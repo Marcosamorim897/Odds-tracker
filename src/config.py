@@ -10,6 +10,14 @@ load_dotenv(BASE_DIR / ".env")
 API_KEY = os.getenv("ODDS_API_KEY", "")
 API_BASE_URL = "https://api.the-odds-api.com/v4"
 
+# Em produção (Render), DATABASE_URL aponta para o Postgres do Neon.
+# Localmente, fica vazio e o app usa SQLite em data/odds.db.
+DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
+if DATABASE_URL.startswith("postgres://"):
+    # SQLAlchemy exige o esquema "postgresql://"; alguns provedores ainda
+    # entregam a connection string com o prefixo antigo "postgres://".
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 # Brasileirão Série A
 SPORT_KEY = "soccer_brazil_campeonato"
 
