@@ -42,12 +42,21 @@ Também dá para coletar via linha de comando (útil para agendar):
 python -m src.collector
 ```
 
+## Planilha de apostas (gestão de banca)
+
+A aba **📒 Planilha de apostas** registra suas apostas com jogo, mercado,
+casa, odd, unidades, valor em R$ e EV estimado. Conforme você marca cada
+aposta como Ganha/Perdida/Anulada, o painel calcula lucro por aposta, ROI
+por aposta, ROI geral, taxa de acerto e total apostado. A tabela tem
+download em CSV embutido (ícone no topo do histórico).
+
 ## Estrutura
 
 | Arquivo | Papel |
 |---|---|
 | `src/collector.py` | Busca odds na API e grava no SQLite |
 | `src/ev_engine.py` | Devig + cálculo de EV |
+| `src/bets.py` | Planilha de apostas: registro, status, lucro e ROI |
 | `src/database.py` | Persistência (histórico de snapshots) |
 | `src/config.py` | Liga, mercados, regiões, casa de referência |
 | `app.py` | Dashboard Streamlit |
